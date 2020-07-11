@@ -2,29 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pyramid Slide</title>
     <style>
-        #pyramid {
+        .head-slide {
+            color: #E6DFE4;
+            background-color: #B36093;
+            text-align: center;
             font-family: "Courier New", monospace;
-            line-height: 0;
+            padding: 30px 0px 30px 0px;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        .pyramid-control {
+            background: #D2D2D2;
+            padding: 20px 80px 20px 80px;
+        }
+        .pyramid-panel {
+            border: 2px solid #B36093;
+            border-radius: 5px;
+            max-width: 800px;
+            font-family: "Courier New", monospace;
+            /* center */
+            display: table;
+            margin: 0 auto 50px auto;
+        }
+        .pyramid {
+            background: #F1F1F1;
+            padding: 20px;
+            line-height: 0.7;
+            font-size: 30px;
+            color: #B36093;
+        }
+        p {
+            text-align: center;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
-    <p>
-    Brick Symbol:
-    <select id="brick-symbol">
-        <option>#</option>
-        <option>@</option>
-        <option>X</option>
-        <option>$</option>
-    </select>
-    &nbsp;&nbsp;&nbsp;
-    How high?
-    <input id="height-control" type="range" min="1" max="20" value="8" /><strong id="height-value"></strong>
-    </p>
-    <div id="pyramid">
-        <div id="construction">
+    <h1 class="head-slide">Pyramid Slide</h1>
+    <div  class="pyramid-panel">
+        <div class="pyramid-control">
+            <p>
+                <span>
+                    <label for="brick-symbol">Brick Symbol:</label>
+                    <select id="brick-symbol">
+                        <option>#</option>
+                        <option>@</option>
+                        <option>X</option>
+                        <option>$</option>
+                    </select>
+                </span>
+                &nbsp;&nbsp;&nbsp;
+                <span>
+                    <label for="height-control">How high?</label>
+                    <input id="height-control" type="range" min="1" max="20" value="8" />
+                    <strong id="height-value"></strong>
+                </span>
+            </p>
+        </div>
+        <div id="pyramid" class="pyramid">
+            <div id="construction">
+            </div>
         </div>
     </div>
     <script src="scripts.js"></script>
