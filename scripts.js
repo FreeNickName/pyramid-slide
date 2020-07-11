@@ -11,4 +11,22 @@ function createLevel (root, text) {
     root.appendChild(level)
 }
 
-drawPyramid(document.getElementById('pyramid'), 5)
+window.onload = function () {
+    const highControl = document.getElementById('high-control')
+    const highValue = document.getElementById('high-value')
+    highValue.textContent  = highControl.value
+    highControl.addEventListener('change', highControlOnChange)
+    let construction = document.getElementById('construction')
+    const pyramid = document.getElementById('pyramid')
+
+    drawPyramid(construction, parseInt(highControl.value))
+
+    function highControlOnChange(e) {
+        highValue.textContent   = e.target.value
+        construction.remove()
+        construction = document.createElement('div')
+        pyramid.appendChild(construction)
+        drawPyramid(construction, parseInt(e.target.value))
+        //console.log(e.target.value)
+    }
+}

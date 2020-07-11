@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-
+    <p>
     Brick Symbol:
     <select>
         <option>#</option>
@@ -21,9 +21,12 @@
     </select>
     &nbsp;&nbsp;&nbsp;
     How high?
-    <input type="range" />
-    <br/>
-    <div id="pyramid"></div>
+    <input id="high-control" type="range" min="1" max="20" value="8" /><strong id="high-value"></strong>
+    </p>
+    <div id="pyramid">
+        <div id="construction">
+        </div>
+    </div>
     <script src="scripts.js"></script>
 </body>
 
