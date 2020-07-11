@@ -1,32 +1,54 @@
-function drawPyramid (node, height) {
-    let numberOfBlocks = 2;
-    for (let numberOfLevels = height; numberOfLevels > 0; numberOfLevels--) {
-        createLevel(node, Array(numberOfLevels).join('\u00A0') + Array(++numberOfBlocks).join('#'));
-    }
-}
+window.onload = init
 
-function createLevel (root, text) {
-    const level = document.createElement('p')
-    level.appendChild(document.createTextNode(text))
-    root.appendChild(level)
-}
-
-window.onload = function () {
-    const highControl = document.getElementById('high-control')
-    const highValue = document.getElementById('high-value')
-    highValue.textContent  = highControl.value
-    highControl.addEventListener('change', highControlOnChange)
+function init () {
+    const heightControl = document.getElementById('height-control')
+    const heightValue = document.getElementById('height-value')
+    const brickSymbol = document.getElementById('brick-symbol')
+    heightControl.addEventListener('change', heightChange)
+    brickSymbol.addEventListener('change', brickChange)
     let construction = document.getElementById('construction')
     const pyramid = document.getElementById('pyramid')
 
-    drawPyramid(construction, parseInt(highControl.value))
+    buildPyramid(construction, brickSymbol.value, parseInt(heightControl.value))
 
-    function highControlOnChange(e) {
-        highValue.textContent   = e.target.value
+    function heightChange(e) {
+        rebuildPyramid(brickSymbol.value, parseInt(e.target.value))
+    }
+
+    function brickChange(e) {
+        rebuildPyramid(e.target.value, parseInt(heightControl.value))
+    }
+
+    function rebuildPyramid(brick, height) {
         construction.remove()
         construction = document.createElement('div')
+        buildPyramid(construction, brick, height)
         pyramid.appendChild(construction)
-        drawPyramid(construction, parseInt(e.target.value))
-        //console.log(e.target.value)
     }
+
+    function buildPyramid (construction, brick, height) {
+        setHeight(heightValue, height)
+        return drawPyramid(construction, brick, height, addTextLine)
+    }
+}
+
+function setHeight(node, height) {
+    node.textContent = height
+}
+
+function drawPyramid (construction, brick, height, tool) {
+    let numberOfBlocks = 2;
+    for (let numberOfLevels = height; numberOfLevels > 0; numberOfLevels--) {
+        tool(construction, 'p', Array(numberOfLevels).join('\u00A0') + Array(++numberOfBlocks).join(brick));
+    }
+}
+
+function addTextLine (parent, type, text) {
+    const level = document.createElement(type)
+    level.appendChild(document.createTextNode(text))
+    parent.appendChild(level)
+}
+
+function printToConsole(x, x, text) {
+    console.log(text)
 }
